@@ -4,29 +4,42 @@
         <meta charset="UTF-8">
         <title>Hello There</title>
         <style>
-            h2 {text-align: center;}
+            h2 {text-align: center; font-size: 35px}
             p {text-align: center;}
             div {text-align: center;}
             form {margin: 0 auto;}
+            .vertical-horizontal-center {
+                margin: 0;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                -ms-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+                background-color: darkgrey;
+            }
         </style>
     </head>
     
-    <body style="background: #FFF;">
+    <body class="vertical-horizontal-center">
                 <h2>Check Reader</h2>
                 <p>Please input the check using the following tools:</p>
                 <div>
-                    <form>
-                        <label for="img">Upload a Check:</label>
-                        <input type="file" id="img" name="img" accept="image/*">
-                      </form>
-                    <p></p>
-                    <form method="post">
-		            <input type="text" name="Value of Check" placeholder="Value of Check" required="required" />
-
-                    <p></p>
-                    <button type="submit" class="btn btn-primary btn-block btn-large">Submit Check</button>
-                    
+                    <form method=post enctype=multipart/form-data>
+                        <label>Upload a check:</label>
+                        <input type=file name=file>
+                        <br><label>Enter Value of Check:</label>
+                        <input name=text>
+                        <br><input type=submit>
+                        
                     </form>
+                    {% if msg %}
+                    <h1>{{ msg }}</h1>
+                    {% endif %}
+
+                    {% if msg2 %}
+                    <h1>{{ msg2 }}</h1>
+                    {% endif %}
+                    
                 </div>
     </body>
 </html>
