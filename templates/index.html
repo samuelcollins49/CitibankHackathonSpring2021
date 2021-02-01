@@ -4,25 +4,37 @@
         <meta charset="UTF-8">
         <title>Check Reader</title>
         <style>
-            h2 {text-align: center; font-size: 45px}
-            p {text-align: center; font-size: 20px}
+            h2 {text-align: center; font-size: 35px}
+            p {text-align: center;}
             div {text-align: center;}
             form {margin: 0 auto;}
-            body {font-family: Copperplate;}
+            .vertical-horizontal-center {
+                margin: 0;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                -ms-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+                background-color: darkgrey;
+            }
         </style>
     </head>
     
-    <body style="background: #9BA3A1;">
-                <h2 style="color: black;">Check Reader</h2>
-                <p style="color: black;">Please input the check using the following tools:</p>
+    <body class="vertical-horizontal-center">
+                <h2>Check Reader</h2>
+                <p>Please input the check using the following tools:</p>
                 <div>
-                    <form>
-                        <label for="img" style="color: Black;">Upload a Check:</label>
-                        <input type="file" id="img" name="img" accept="image/*">
+                    <form method=post enctype=multipart/form-data>
+                        <label>Upload a check:</label>
+                        <input type=file name=file>
+                        <br><label>Enter Value of Check:</label>
+                        <input name=text>
+                        <br><input type=submit>
+                        
                     </form>
-                    <p></p>
-                    <form action="{{ url_for('predict')}}"method="post">
-		            <input type="text" name="Enter Amount ($)" placeholder="Enter Amount ($)" required="required" />
+                    {% if msg %}
+                    <h1>{{ msg }}</h1>
+                    {% endif %}
 
                     {% if msg2 %}
                     <h1>{{ msg2 }}</h1>
